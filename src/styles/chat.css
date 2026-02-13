@@ -18,6 +18,31 @@
     flex-shrink: 0;
 }
 
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    color: #e0e0e0;
+    font-size: 1.8rem;
+    line-height: 1;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+.mobile-menu-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
 .navbar-brand {
     font-size: 1.5rem;
     font-weight: 700;
@@ -28,6 +53,10 @@
     display: flex;
     align-items: center;
     gap: 20px;
+}
+
+.desktop-username {
+    display: inline;
 }
 
 .logout-btn {
@@ -49,8 +78,9 @@
 .main-layout {
     display: flex;
     flex: 1;
-    overflow: hidden; /* important: prevents double scrollbars */
-    min-height: 0;    /* flex children can shrink below content height */
+    overflow: hidden;
+    min-height: 0;
+    position: relative;
 }
 
 /* Chat window container */
@@ -60,7 +90,7 @@
     flex-direction: column;
     background: #0f0f0f;
     overflow: hidden;
-    min-width: 0; /* prevents flex item from overflowing */
+    min-width: 0;
 }
 
 /* Empty state */
@@ -89,6 +119,7 @@
     border-radius: 20px;
     position: relative;
     word-wrap: break-word;
+    white-space: pre-wrap;
 }
 
 .message-bubble.user {
@@ -108,17 +139,10 @@
 .message-content {
     font-size: 1rem;
     line-height: 1.6;
-    white-space: normal; /* Let markdown handle spacing */
+    white-space: normal;
 }
 
-.message-timestamp {
-    font-size: 0.7rem;
-    opacity: 0.6;
-    margin-top: 4px;
-    text-align: right;
-}
-
-/* ---------- Markdown Content Styling ---------- */
+/* Markdown Content Styling */
 .message-content h1,
 .message-content h2,
 .message-content h3,
@@ -187,7 +211,6 @@
     background: rgba(255, 255, 255, 0.05);
 }
 
-/* Code blocks */
 .message-content pre {
     background: #1e1e2e;
     border-radius: 8px;
@@ -209,28 +232,25 @@
     color: #ffb86c;
 }
 
-/* Task lists */
 .message-content input[type="checkbox"] {
     margin-right: 0.5em;
     transform: scale(1.2);
     filter: invert(0.8);
 }
 
-/* Horizontal rule */
 .message-content hr {
     border: none;
     border-top: 1px solid #444;
     margin: 1em 0;
 }
 
-/* Images */
 .message-content img {
     max-width: 100%;
     border-radius: 8px;
     margin: 0.5em 0;
 }
 
-/* Adjust user message colors for readability */
+/* User message adjustments */
 .message-bubble.user .message-content a {
     color: #fff;
     text-decoration: underline;
@@ -251,6 +271,13 @@
     color: #ddd;
 }
 
+.message-timestamp {
+    font-size: 0.7rem;
+    opacity: 0.6;
+    margin-top: 4px;
+    text-align: right;
+}
+
 /* Input form fixed at bottom */
 .input-form {
     display: flex;
@@ -259,12 +286,12 @@
     backdrop-filter: blur(10px);
     border-top: 1px solid #2a2a2a;
     flex-shrink: 0;
-    gap: 12px; /* consistent spacing between elements */
+    gap: 12px;
 }
 
 .input-form textarea {
-    flex: 1; /* takes remaining space */
-    width: 90%; /* fallback for older browsers */
+    flex: 1;
+    width: 85%;
     padding: 12px 16px;
     background: #1a1a1a;
     border: 1px solid #333;
@@ -285,9 +312,9 @@
 }
 
 .input-form button {
-    width: 10%; /* explicit proportion */
-    min-width: 60px; /* ensure usability on small screens */
-    padding: 10px 0; /* reduced vertical padding */
+    width: 15%;
+    min-width: 60px;
+    padding: 10px 0;
     background: #6b8cff;
     color: #fff;
     font-weight: 600;
@@ -295,7 +322,7 @@
     transition: background 0.2s;
     white-space: nowrap;
     border: none;
-    font-size: 0.95rem; /* slightly smaller text */
+    font-size: 0.95rem;
 }
 
 .input-form button:hover:not(:disabled) {
@@ -341,8 +368,16 @@
         padding: 12px 16px;
     }
 
+    .mobile-menu-btn {
+        display: block;
+    }
+
     .navbar-brand {
         font-size: 1.2rem;
+    }
+
+    .desktop-username {
+        display: none; /* Hide username in navbar on mobile */
     }
 
     .message-bubble {
@@ -360,7 +395,7 @@
     }
 
     .input-form button {
-        width: auto; /* let content define width on very small screens */
+        width: auto;
         min-width: 70px;
         padding: 10px 12px;
         font-size: 0.9rem;

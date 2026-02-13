@@ -4,7 +4,7 @@
     align-items: center;
     min-height: 100vh;
     background: linear-gradient(135deg, #0b0b0b 0%, #1a1a2e 100%);
-    padding: 20px;
+    padding: 16px;
 }
 
 .auth-card {
@@ -99,4 +99,28 @@ button[type="submit"]:hover {
 
 .auth-card a:hover {
     text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 30px 20px;
+    }
+
+    .auth-card h1 {
+        font-size: 1.8rem;
+    }
+
+    .auth-card h2 {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group input {
+        padding: 10px 14px;
+    }
+
+    button[type="submit"] {
+        padding: 12px;
+    }
 }
