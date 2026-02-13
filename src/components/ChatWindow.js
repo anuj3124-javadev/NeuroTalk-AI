@@ -17,21 +17,21 @@ const ChatWindow = ({ chatId }) => {
     }, [messages]);
 
     useEffect(() => {
+        const fetchMessages = async () => {
+            try {
+                const response = await api.get(`/chats/${chatId}`);
+                setMessages(response.data.messages);
+            } catch (error) {
+                console.error('Failed to load messages', error);
+            }
+        };
+
         if (chatId) {
             fetchMessages();
         } else {
             setMessages([]);
         }
     }, [chatId]);
-
-    const fetchMessages = async () => {
-        try {
-            const response = await api.get(`/chats/${chatId}`);
-            setMessages(response.data.messages);
-        } catch (error) {
-            console.error('Failed to load messages', error);
-        }
-    };
 
     const handleSend = async (e) => {
         e.preventDefault();
